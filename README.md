@@ -2,7 +2,7 @@
 
 Smart City Management Platform for the fictional UrbanTech Solutions, built for the JIAT *Object Oriented Design Patterns II* assessment (JIAT/OODP II/EX/01).
 
-Each of the five scenarios (Parts A to E) is solved with exactly one object-oriented design pattern. The backend is built first and exposes a REST API; a React frontend is added afterwards.
+Each of the five scenarios (Parts A to E) is solved with exactly one object-oriented design pattern. The backend is built first in plain Java (no framework); a web frontend is added afterwards.
 
 ## Tech stack
 
@@ -10,10 +10,11 @@ Each of the five scenarios (Parts A to E) is solved with exactly one object-orie
 |---|---|
 | Language | Java 17+ |
 | Build | Maven |
-| Backend | Spring Boot (REST API, Spring Data JPA) |
+| Backend | Plain Java (no framework) |
+| Database access | JDBC with MySQL Connector/J |
 | Database | MySQL 8.0.16+ (CHECK constraints are enforced from this version) |
 | Testing | JUnit 5 |
-| Frontend | React (planned, after the backend) |
+| Web layer and frontend | To be decided after the backend (for example a small embedded HTTP server for a React frontend) |
 
 ## Patterns used
 
@@ -37,14 +38,14 @@ SmartCity
     │   ├── java/lk/menara/smartcity360
     │   │   ├── auth/             login and sign-up (not part of Part A)
     │   │   ├── config/
-    │   │   ├── controller/       REST endpoints, no business logic
+    │   │   ├── controller/       entry points for the UI/web layer, no business logic
     │   │   ├── dto/
     │   │   ├── exception/
     │   │   ├── model/
-    │   │   │   ├── entity/       JPA entities that map to the tables
+    │   │   │   ├── entity/       plain Java classes that map to the tables
     │   │   │   └── enums/        ZoneLevel, ComplaintStatus, ...
     │   │   ├── patterns/         one sub-package per pattern (A to E)
-    │   │   ├── repository/
+    │   │   ├── repository/       JDBC data access (one class per table)
     │   │   ├── service/
     │   │   └── util/
     │   └── resources
@@ -53,22 +54,23 @@ SmartCity
     └── test/java/...             one test class per pattern
 ```
 
-Request flow: React → controller → service → pattern / model → repository → MySQL.
+Request flow: UI → controller → service → pattern / model → repository (JDBC) → MySQL.
 
 ## Database setup
 
 1. Create the schema and starting data: run `src/main/resources/db/schema.sql` in MySQL.
-2. Set the connection in `src/main/resources/application.properties`:
+2. Set the connection in `src/main/resources/application.properties` (read by a class in `config/` using `java.util.Properties`):
    ```
-   spring.datasource.url=jdbc:mysql://localhost:3306/smartcity360
-   spring.datasource.username=<your user>
-   spring.datasource.password=<your password>
+   db.url=jdbc:mysql://localhost:3306/smartcity360
+   db.username=<your user>
+   db.password=<your password>
    ```
-3. Run the application:
+   Do not commit your real password.
+3. Build and run:
    ```
    mvn clean package
-   mvn spring-boot:run
    ```
+   Then run `lk.menara.smartcity360.Main` from IntelliJ.
 
 ### Tables and the pattern each supports
 
@@ -92,7 +94,7 @@ A database or Java enum is used only for a small, fixed set of values that the c
 | `ComplaintStatus` | OPEN, ESCALATED, RESOLVED, UNRESOLVED |
 | `ComplaintOutcome` | HANDLED, ESCALATED, UNRESOLVED |
 
-Data that can grow is a lookup table instead (`role`, `complaint_category`, `security_layer`), and two-state flags are booleans (`is_powered_on`, `is_on`, `is_active`). Enums are stored as text (`@Enumerated(EnumType.STRING)`), never as ordinals.
+Data that can grow is a lookup table instead (`role`, `complaint_category`, `security_layer`), and two-state flags are booleans (`is_powered_on`, `is_on`, `is_active`). Enums are stored as text (`enum.name()` when saving, `Enum.valueOf(...)` when reading), never as ordinals.
 
 ## Design notes per part
 
