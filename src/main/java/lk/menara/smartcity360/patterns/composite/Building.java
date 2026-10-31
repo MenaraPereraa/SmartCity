@@ -1,5 +1,6 @@
 package lk.menara.smartcity360.patterns.composite;
 
+<<<<<<< HEAD
 import java.util.List;
 import lk.menara.smartcity360.exception.ValidationException;
 import lk.menara.smartcity360.model.enums.CommandType;
@@ -17,21 +18,34 @@ public class Building implements ZoneComponent {
         if (powerUsage < 0) {
             throw new ValidationException("Power usage cannot be negative");
         }
+=======
+public class Building implements ZoneComponent {
+    private String name;
+    private double powerUsage;
+
+    public Building(String name, double powerUsage) {
+>>>>>>> main
         this.name = name;
         this.powerUsage = powerUsage;
     }
 
     @Override
+<<<<<<< HEAD
     public String getName() {
         return name;
     }
 
     public PowerState getPowerState() {
         return powerState;
+=======
+    public void executeCommand(String command) {
+        System.out.println("Building [" + name + "] executing command: " + command);
+>>>>>>> main
     }
 
     @Override
     public double getResourceUsage() {
+<<<<<<< HEAD
         return powerState == PowerState.ON ? powerUsage : 0;
     }
 
@@ -50,3 +64,8 @@ public class Building implements ZoneComponent {
         }
     }
 }
+=======
+        return this.powerUsage;
+    }
+}
+>>>>>>> main
