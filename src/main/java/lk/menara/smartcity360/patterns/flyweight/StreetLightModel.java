@@ -3,7 +3,6 @@ package lk.menara.smartcity360.patterns.flyweight;
 import java.util.Locale;
 import lk.menara.smartcity360.exception.ValidationException;
 
-
 public final class StreetLightModel {
     private final String model;
     private final int watts;

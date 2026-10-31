@@ -2,6 +2,7 @@ package lk.menara.smartcity360.patterns.flyweight;
 
 import lk.menara.smartcity360.exception.ValidationException;
 
+
 public class StreetLight {
     private final String id;
     private final double latitude;
