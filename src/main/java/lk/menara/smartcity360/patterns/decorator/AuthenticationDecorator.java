@@ -1,17 +1,19 @@
 package lk.menara.smartcity360.patterns.decorator;
 
 import lk.menara.smartcity360.exception.AuthenticationFailedException;
+
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
+import java.util.Objects;
 
-public class AuthenticationStream extends MeterStreamDecorator {
+public class AuthenticationDecorator extends MeterStreamDecorator {
     private final String providedToken;
     private final String expectedToken;
 
-    public AuthenticationStream(MeterStream innerStream, String providedToken, String expectedToken) {
+    public AuthenticationDecorator(MeterStream innerStream, String providedToken, String expectedToken) {
         super(innerStream);
         this.providedToken = providedToken;
-        this.expectedToken = expectedToken;
+        this.expectedToken = Objects.requireNonNull(expectedToken, "Expected token is required");
     }
 
     @Override
