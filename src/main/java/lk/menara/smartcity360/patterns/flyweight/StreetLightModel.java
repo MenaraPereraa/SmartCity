@@ -3,11 +3,7 @@ package lk.menara.smartcity360.patterns.flyweight;
 import java.util.Locale;
 import lk.menara.smartcity360.exception.ValidationException;
 
-/**
- * Flyweight: holds only the intrinsic (shared, immutable) state of a street light type.
- * Instances are created by {@link StreetLightModelFactory} so that one object is shared
- * by every street light of the same type. Extrinsic state (position, on/off) is passed in.
- */
+
 public final class StreetLightModel {
     private final String model;
     private final int watts;

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import lk.menara.smartcity360.config.AppConstants;
 import lk.menara.smartcity360.exception.ValidationException;
+import lk.menara.smartcity360.model.ComplaintEvent;
 import lk.menara.smartcity360.model.enums.ComplaintStatus;
 
 public class Complaint {
