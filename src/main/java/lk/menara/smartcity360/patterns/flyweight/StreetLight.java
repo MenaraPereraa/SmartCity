@@ -2,10 +2,7 @@ package lk.menara.smartcity360.patterns.flyweight;
 
 import lk.menara.smartcity360.exception.ValidationException;
 
-/**
- * Context object: keeps the extrinsic (unique) state of one street light and a reference
- * to the shared {@link StreetLightModel} flyweight.
- */
+
 public class StreetLight {
     private final String id;
     private final double latitude;

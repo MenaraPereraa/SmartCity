@@ -3,10 +3,7 @@ package lk.menara.smartcity360.patterns.flyweight;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * Flyweight factory: returns the one shared {@link StreetLightModel} for a given set of
- * intrinsic values, creating it only the first time it is requested.
- */
+
 public final class StreetLightModelFactory {
     private record ModelKey(String model, int watts, int brightnessLumens, int colourTempKelvin) {
     }

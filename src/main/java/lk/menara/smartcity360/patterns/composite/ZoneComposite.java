@@ -1,10 +1,6 @@
 package lk.menara.smartcity360.patterns.composite;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> da3b151e8a1de2211f81daef7f2563e22c505db6
 import java.util.Collections;
 import java.util.List;
 import lk.menara.smartcity360.exception.ValidationException;
@@ -64,44 +60,10 @@ public class ZoneComposite implements ZoneComponent {
             }
         }
         return false;
-<<<<<<< HEAD
-=======
-import java.util.List;
-
-public class ZoneComposite implements ZoneComponent {
-    private String name;
-    private List<ZoneComponent> zoneComponents = new ArrayList<>();
-
-    public ZoneComposite(String name) {
-        this.name = name;
-    }
-
-    public void add(ZoneComponent component) {
-        zoneComponents.add(component);
-    }
-
-    public void remove(ZoneComponent component) {
-        zoneComponents.remove(component);
-    }
-
-    @Override
-    public void executeCommand(String command) {
-        System.out.println("Zone: " + name + " broadcasting command -> " + command);
-        for (ZoneComponent component : zoneComponents) {
-            component.executeCommand(command);
-        }
->>>>>>> main
     }
 
     @Override
     public double getResourceUsage() {
-<<<<<<< HEAD
-=======
-    }
-
-    @Override
-    double getResourceUsage() {
->>>>>>> da3b151e8a1de2211f81daef7f2563e22c505db6
         double total = 0;
         for (ZoneComponent child : children) {
             total += child.getResourceUsage();
@@ -116,17 +78,4 @@ public class ZoneComposite implements ZoneComponent {
             child.executeCommand(command, log);
         }
     }
-<<<<<<< HEAD
 }
-=======
-        double totalUsage = 0;
-        for (ZoneComponent component : zoneComponents) {
-            totalUsage += component.getResourceUsage();
-        }
-        return totalUsage;
-    }
-}
->>>>>>> main
-=======
-}
->>>>>>> da3b151e8a1de2211f81daef7f2563e22c505db6
