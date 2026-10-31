@@ -63,7 +63,7 @@ public class ZoneComposite implements ZoneComponent {
     }
 
     @Override
-    public double getResourceUsage() {
+    double getResourceUsage() {
         double total = 0;
         for (ZoneComponent child : children) {
             total += child.getResourceUsage();
