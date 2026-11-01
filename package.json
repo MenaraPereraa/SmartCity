@@ -1,0 +1,27 @@
+{
+  "name": "smartcity",
+  "version": "1.0.0",
+  "description": "Smart City Management Platform for the fictional UrbanTech Solutions, built for the JIAT *Object Oriented Design Patterns II* assessment (JIAT/OODP II/EX/01).",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/main/webapp/assets/css/tailwind.css -o ./src/main/webapp/assets/css/styles.css --minify",
+    "watch:css": "tailwindcss -i ./src/main/webapp/assets/css/tailwind.css -o ./src/main/webapp/assets/css/styles.css --watch",
+    "test": "echo \"No project tests configured for the frontend build\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MenaraPereraa/SmartCity.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MenaraPereraa/SmartCity/issues"
+  },
+  "homepage": "https://github.com/MenaraPereraa/SmartCity#readme",
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.11",
+    "tailwindcss": "^3.4.17"
+  }
+}

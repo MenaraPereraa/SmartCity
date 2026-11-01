@@ -1,0 +1,46 @@
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><c:out value="${pageTitle}"/> | SmartCity360</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${ctx}/assets/app.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark sc-navbar">
+    <div class="container">
+        <a class="navbar-brand fw-semibold" href="${ctx}/app/dashboard">SmartCity360</a>
+        <c:if test="${not empty sessionScope.user}">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                    aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="${ctx}/app/dashboard">Dashboard</a></li>
+                    <c:if test="${sessionScope.user.resident}">
+                        <li class="nav-item"><a class="nav-link" href="${ctx}/app/complaints/new">New complaint</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${ctx}/app/my-complaints">My complaints</a></li>
+                    </c:if>
+                    <c:if test="${sessionScope.user.staff}">
+                        <li class="nav-item"><a class="nav-link" href="${ctx}/app/inbox">Inbox</a></li>
+                    </c:if>
+                </ul>
+                <form class="d-flex align-items-center gap-2" method="post" action="${ctx}/logout">
+                    <input type="hidden" name="_csrf" value="<c:out value='${csrfToken}'/>">
+                    <span class="navbar-text text-white">
+                        <c:out value="${sessionScope.user.fullName}"/>
+                        <span class="badge text-bg-light"><c:out value="${sessionScope.user.roleDisplay}"/></span>
+                    </span>
+                    <button class="btn btn-outline-light btn-sm" type="submit">Sign out</button>
+                </form>
+            </div>
+        </c:if>
+    </div>
+</nav>
+<main class="container py-4">
+<c:if test="${not empty flashMessage}">
+    <div class="alert alert-${flashType}" role="alert"><c:out value="${flashMessage}"/></div>
+</c:if>

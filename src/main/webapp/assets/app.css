@@ -1,0 +1,14 @@
+body { background: #f4f7f9; }
+.sc-navbar { background: linear-gradient(90deg, #0b3d5c, #136f63); }
+.sc-stat { border-left: 4px solid #0b3d5c; }
+.sc-stat.open { border-left-color: #0d6efd; }
+.sc-stat.escalated { border-left-color: #ffc107; }
+.sc-stat.resolved { border-left-color: #198754; }
+.sc-stat.unresolved { border-left-color: #dc3545; }
+.sc-stat-number { font-size: 2rem; font-weight: 700; line-height: 1.1; }
+.sc-timeline { list-style: none; margin: 0 0 0 .5rem; padding: 0; border-left: 2px solid #dee2e6; }
+.sc-timeline li { position: relative; padding: 0 0 1.25rem 1.5rem; }
+.sc-timeline li::before { content: ""; position: absolute; left: -7px; top: .4rem; width: 12px; height: 12px;
+    border-radius: 50%; background: #6c757d; }
+.sc-timeline li:last-child { padding-bottom: 0; }
+.sc-description { white-space: pre-wrap; }
