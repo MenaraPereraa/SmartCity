@@ -1,0 +1,298 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   SmartCity360 – Custom Component Layer
+   All utility-class-heavy pieces defined here so JSPs stay
+   readable.  Pure Tailwind; no Bootstrap.
+   ============================================================ */
+
+@layer base {
+  html { @apply antialiased; }
+  body { @apply bg-slate-50 text-slate-800; font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+  *, *::before, *::after { box-sizing: border-box; }
+}
+
+@layer components {
+
+  /* ── Sidebar ─────────────────────────────────────────────── */
+  .sc-sidebar {
+    @apply fixed inset-y-0 left-0 w-64 bg-slate-900 text-slate-100 flex flex-col z-30 transition-transform duration-200;
+  }
+  .sc-sidebar-logo {
+    @apply flex items-center gap-3 px-5 py-5 border-b border-slate-700/60;
+  }
+  .sc-sidebar-logo-icon {
+    @apply w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center text-white text-lg font-bold flex-shrink-0;
+  }
+  .sc-sidebar-logo-text {
+    @apply text-base font-bold tracking-tight leading-tight;
+  }
+  .sc-sidebar-logo-sub {
+    @apply text-xs text-slate-400 leading-none mt-0.5;
+  }
+  .sc-nav-section-label {
+    @apply px-5 pt-5 pb-1 text-xs font-semibold text-slate-500 uppercase tracking-widest;
+  }
+  .sc-nav-link {
+    @apply flex items-center gap-3 px-5 py-2.5 mx-2 rounded-lg text-slate-300 text-sm font-medium transition-colors duration-150 hover:bg-slate-800 hover:text-white;
+  }
+  .sc-nav-link.active {
+    @apply bg-blue-600 text-white shadow-sm;
+  }
+  .sc-nav-link svg, .sc-nav-link i {
+    @apply w-4 h-4 flex-shrink-0 opacity-80;
+  }
+  .sc-nav-link.active svg, .sc-nav-link.active i {
+    @apply opacity-100;
+  }
+  .sc-sidebar-footer {
+    @apply mt-auto border-t border-slate-700/60 p-4;
+  }
+  .sc-user-chip {
+    @apply flex items-center gap-3 mb-3;
+  }
+  .sc-avatar {
+    @apply w-9 h-9 rounded-full bg-blue-600 text-white text-sm font-bold flex items-center justify-center flex-shrink-0;
+  }
+
+  /* ── Shell / page wrapper ────────────────────────────────── */
+  .sc-shell {
+    @apply ml-64 min-h-screen flex flex-col;
+  }
+  .sc-topbar {
+    @apply h-14 bg-white border-b border-slate-200 flex items-center justify-between px-6 sticky top-0 z-20;
+  }
+  .sc-page-content {
+    @apply flex-1 p-6;
+  }
+
+  /* ── Page headings ───────────────────────────────────────── */
+  .sc-page-title {
+    @apply text-xl font-bold text-slate-800 mb-0.5;
+  }
+  .sc-page-sub {
+    @apply text-sm text-slate-500;
+  }
+  .sc-page-header {
+    @apply flex items-start justify-between mb-6 gap-4;
+  }
+
+  /* ── Cards ───────────────────────────────────────────────── */
+  .sc-card {
+    @apply bg-white rounded-xl border border-slate-200 shadow-sm;
+  }
+  .sc-card-header {
+    @apply flex items-center justify-between px-5 py-4 border-b border-slate-100;
+  }
+  .sc-card-title {
+    @apply text-sm font-semibold text-slate-700;
+  }
+  .sc-card-body {
+    @apply p-5;
+  }
+
+  /* ── Stat cards ──────────────────────────────────────────── */
+  .sc-stat-card {
+    @apply sc-card flex items-start gap-4 p-5 transition-shadow hover:shadow-md;
+  }
+  .sc-stat-icon {
+    @apply w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0 text-xl;
+  }
+  .sc-stat-value {
+    @apply text-3xl font-bold leading-none text-slate-800;
+  }
+  .sc-stat-label {
+    @apply text-xs text-slate-500 mt-1 font-medium uppercase tracking-wide;
+  }
+
+  /* ── Buttons ─────────────────────────────────────────────── */
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
+  }
+  .btn-secondary {
+    @apply btn bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 focus:ring-slate-400;
+  }
+  .btn-danger {
+    @apply btn bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+  }
+  .btn-success {
+    @apply btn bg-green-600 text-white hover:bg-green-700 focus:ring-green-500;
+  }
+  .btn-warning {
+    @apply btn bg-amber-500 text-white hover:bg-amber-600 focus:ring-amber-400;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-800 focus:ring-slate-300;
+  }
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+  .btn-lg {
+    @apply px-6 py-3 text-base;
+  }
+  .btn-icon {
+    @apply btn p-2 rounded-lg;
+  }
+
+  /* ── Form controls ───────────────────────────────────────── */
+  .sc-label {
+    @apply block text-sm font-medium text-slate-700 mb-1.5;
+  }
+  .sc-input {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 placeholder-slate-400 shadow-sm transition focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500;
+  }
+  .sc-input-error {
+    @apply border-red-400 focus:border-red-500 focus:ring-red-400;
+  }
+  .sc-select {
+    @apply sc-input appearance-none cursor-pointer;
+  }
+  .sc-textarea {
+    @apply sc-input resize-y min-h-[100px];
+  }
+  .sc-form-hint {
+    @apply mt-1.5 text-xs text-slate-400;
+  }
+  .sc-form-error {
+    @apply mt-1.5 text-xs text-red-600;
+  }
+
+  /* ── Radio / Checkbox groups ────────────────────────────── */
+  .sc-radio-card {
+    @apply flex items-start gap-3 rounded-lg border border-slate-200 p-4 cursor-pointer hover:border-blue-400 transition-colors;
+  }
+  .sc-radio-card input[type="radio"]:checked ~ .sc-radio-label { @apply text-blue-700; }
+
+  /* ── Badges ──────────────────────────────────────────────── */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold;
+  }
+  .badge-blue   { @apply badge bg-blue-100 text-blue-700; }
+  .badge-green  { @apply badge bg-green-100 text-green-700; }
+  .badge-red    { @apply badge bg-red-100 text-red-700; }
+  .badge-amber  { @apply badge bg-amber-100 text-amber-700; }
+  .badge-slate  { @apply badge bg-slate-100 text-slate-600; }
+  .badge-purple { @apply badge bg-purple-100 text-purple-700; }
+
+  /* ── Tables ──────────────────────────────────────────────── */
+  .sc-table-wrap { @apply sc-card overflow-hidden; }
+  .sc-table {
+    @apply w-full text-sm;
+  }
+  .sc-table thead tr {
+    @apply bg-slate-50 border-b border-slate-200;
+  }
+  .sc-table th {
+    @apply px-4 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wide whitespace-nowrap;
+  }
+  .sc-table td {
+    @apply px-4 py-3 text-slate-700 border-b border-slate-100 last:border-0;
+  }
+  .sc-table tbody tr:hover td {
+    @apply bg-slate-50;
+  }
+
+  /* ── Toast notifications ─────────────────────────────────── */
+  #toast-host {
+    @apply fixed bottom-5 right-5 z-50 flex flex-col gap-2 w-80;
+  }
+  .sc-toast {
+    @apply flex items-start gap-3 rounded-xl px-4 py-3 shadow-lg text-sm font-medium text-white transform translate-y-0 transition-all duration-300;
+  }
+  .sc-toast.hide { @apply opacity-0 translate-y-2 pointer-events-none; }
+  .sc-toast-success { @apply sc-toast bg-green-700; }
+  .sc-toast-error   { @apply sc-toast bg-red-700; }
+  .sc-toast-warning { @apply sc-toast bg-amber-600; }
+  .sc-toast-info    { @apply sc-toast bg-blue-700; }
+  .sc-toast-close {
+    @apply ml-auto text-white/70 hover:text-white cursor-pointer text-base leading-none flex-shrink-0;
+  }
+
+  /* ── Timeline (complaint history) ───────────────────────── */
+  .sc-timeline { @apply relative space-y-4; }
+  .sc-timeline::before {
+    content: '';
+    @apply absolute left-3.5 top-0 bottom-0 w-px bg-slate-200;
+  }
+  .sc-timeline-item { @apply flex gap-4 relative; }
+  .sc-timeline-dot {
+    @apply w-7 h-7 rounded-full border-2 border-white shadow flex items-center justify-center flex-shrink-0 relative z-10;
+  }
+
+  /* ── Zone tree ───────────────────────────────────────────── */
+  .sc-zone-tree { @apply list-none p-0 m-0 space-y-0.5; }
+  .sc-zone-tree ul { @apply list-none pl-5 mt-0.5 space-y-0.5 border-l border-slate-200 ml-3; }
+  .sc-zone-item {
+    @apply flex items-center gap-2 px-3 py-2 rounded-lg cursor-pointer text-sm text-slate-700 transition-colors hover:bg-slate-100;
+  }
+  .sc-zone-item.selected { @apply bg-blue-50 text-blue-700 font-medium; }
+  .sc-zone-badge {
+    @apply inline-block text-xs font-bold px-1.5 py-0.5 rounded uppercase tracking-wide;
+  }
+  .sc-zone-badge.city     { @apply bg-slate-800 text-white; }
+  .sc-zone-badge.district { @apply bg-blue-700 text-white; }
+  .sc-zone-badge.street   { @apply bg-slate-400 text-white; }
+
+  /* ── Meter cards ─────────────────────────────────────────── */
+  .sc-meter-card {
+    @apply sc-card p-4 flex flex-col gap-2 transition-shadow hover:shadow-md;
+  }
+  .sc-meter-code {
+    @apply text-xs font-semibold text-slate-400 uppercase tracking-wide font-mono;
+  }
+  .sc-meter-kwh {
+    @apply text-2xl font-bold text-slate-800;
+  }
+
+  /* ── Street light cards ──────────────────────────────────── */
+  .sc-light-card {
+    @apply sc-card p-4 flex flex-col gap-2 transition-shadow hover:shadow-md;
+  }
+  .sc-light-indicator {
+    @apply w-3 h-3 rounded-full bg-slate-300 transition-all;
+  }
+  .sc-light-indicator.on {
+    @apply bg-amber-400 shadow-[0_0_6px_2px_rgba(251,191,36,0.5)];
+  }
+  .sc-light-coords { @apply text-xs text-slate-400 font-mono; }
+
+  /* ── Policy expression ───────────────────────────────────── */
+  .sc-policy-expr {
+    @apply font-mono text-xs bg-slate-50 border border-slate-200 rounded px-2 py-1 break-all;
+  }
+
+  /* ── Auth pages ──────────────────────────────────────────── */
+  .sc-auth-wrap {
+    @apply min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 to-blue-950 p-4;
+  }
+  .sc-auth-card {
+    @apply w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden;
+  }
+  .sc-auth-header {
+    @apply bg-gradient-to-r from-blue-700 to-blue-900 text-white px-8 py-7 text-center;
+  }
+  .sc-auth-logo {
+    @apply text-2xl font-black tracking-tight mb-1;
+  }
+  .sc-auth-sub {
+    @apply text-blue-200 text-sm;
+  }
+  .sc-auth-body { @apply px-8 py-7; }
+
+  /* ── Pattern badges ──────────────────────────────────────── */
+  .sc-pattern-badge {
+    @apply inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-500 border border-slate-200;
+  }
+
+  /* ── Responsive: hide sidebar on mobile ─────────────────── */
+  @media (max-width: 768px) {
+    .sc-sidebar { @apply -translate-x-full; }
+    .sc-sidebar.open { @apply translate-x-0; }
+    .sc-shell { @apply ml-0; }
+  }
+}
