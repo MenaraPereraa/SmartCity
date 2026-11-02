@@ -9,14 +9,11 @@ public class DashStats {
     private int resolved;
     private int unresolved;
     private List<ComplaintView> recent;
-    private String scopeLabel;
 
-    // Chart data, stored as valid JSON arrays (double quotes)
+    // Only filled for roles that show a trend chart (valid JSON arrays)
     private String trendLabels = "[]";
     private String submittedData = "[]";
     private String resolvedData = "[]";
-    private String categoryLabels = "[]";
-    private String categoryCounts = "[]";
 
     public DashStats() {}
 
@@ -32,11 +29,11 @@ public class DashStats {
     public int getUnresolved() { return unresolved; }
     public void setUnresolved(int unresolved) { this.unresolved = unresolved; }
 
+    /** Everything still waiting for someone to act on it. */
+    public int getWaiting() { return open + escalated; }
+
     public List<ComplaintView> getRecent() { return recent; }
     public void setRecent(List<ComplaintView> recent) { this.recent = recent; }
-
-    public String getScopeLabel() { return scopeLabel; }
-    public void setScopeLabel(String scopeLabel) { this.scopeLabel = scopeLabel; }
 
     public String getTrendLabels() { return trendLabels; }
     public void setTrendLabels(String trendLabels) { this.trendLabels = trendLabels; }
@@ -46,10 +43,4 @@ public class DashStats {
 
     public String getResolvedData() { return resolvedData; }
     public void setResolvedData(String resolvedData) { this.resolvedData = resolvedData; }
-
-    public String getCategoryLabels() { return categoryLabels; }
-    public void setCategoryLabels(String categoryLabels) { this.categoryLabels = categoryLabels; }
-
-    public String getCategoryCounts() { return categoryCounts; }
-    public void setCategoryCounts(String categoryCounts) { this.categoryCounts = categoryCounts; }
 }

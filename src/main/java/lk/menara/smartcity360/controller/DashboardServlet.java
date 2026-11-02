@@ -39,11 +39,13 @@ public class DashboardServlet extends HttpServlet {
     private static final int STAFF_QUEUE_LIMIT = 8;
     private static final int TREND_DAYS = 7;
 
+    /** Which complaints a query looks at: one resident's, one role's queue, or the whole city. */
     private record Scope(String clause, Integer id) {
         static Scope resident(int userId) { return new Scope("c.app_user_id = ?", userId); }
         static Scope role(int roleId)     { return new Scope("c.current_role_id = ?", roleId); }
         static Scope city()               { return new Scope("1 = 1", null); }
 
+        /** Binds the id (if any) and returns the next parameter index. */
         int bind(PreparedStatement ps) throws SQLException {
             if (id == null) return 1;
             ps.setInt(1, id);
@@ -114,19 +116,19 @@ public class DashboardServlet extends HttpServlet {
                 stats.setRecent(loadComplaints(conn, RESIDENT_RECENT, user.getId(), false));
                 view = "resident/dashboard.jsp";
             } else {
-                // NOTE: getRoleCode() must return LOCAL_STAFF / SUPERVISOR / CITY_MANAGER / ADMIN
-                switch (user.getRoleCode()) {
-                    case "SUPERVISOR" -> {
+                // roleId: 2 = Local Staff, 3 = Supervisor, 4 = City Manager (1 = Resident handled above)
+                switch (user.getRoleId()) {
+                    case 3 -> {
                         loadCounts(conn, Scope.role(user.getRoleId()), stats);
                         loadTrend(conn, Scope.role(user.getRoleId()), stats);
                         view = "supervisor/dashboard.jsp";
                     }
-                    case "CITY_MANAGER", "ADMIN" -> {
+                    case 4 -> {
                         loadCounts(conn, Scope.city(), stats);
                         loadTrend(conn, Scope.city(), stats);
                         view = "manager/dashboard.jsp";
                     }
-                    default -> { // LOCAL_STAFF
+                    default -> { // 2 = Local Staff
                         loadCounts(conn, Scope.role(user.getRoleId()), stats);
                         view = "staff/dashboard.jsp";
                     }
