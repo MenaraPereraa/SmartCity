@@ -1,35 +1,22 @@
 package lk.menara.smartcity360.dto;
 
-import java.sql.Timestamp;
-
 public class UserDTO {
+
     private int id;
     private String firstName;
     private String lastName;
     private String email;
-    private String passwordHash;
     private int roleId;
-    private Timestamp joinedAt;
-    private Integer buildingId;
-    private String status;
-    private int mustChangePassword;
     private Integer assignedZoneId;
 
     public UserDTO() {}
 
-    public UserDTO(int id, String firstName, String lastName, String email, String passwordHash,
-                int roleId, Timestamp joinedAt, Integer buildingId, String status,
-                int mustChangePassword, Integer assignedZoneId) {
+    public UserDTO(int id, String firstName, String lastName, String email, int roleId, Integer assignedZoneId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.passwordHash = passwordHash;
         this.roleId = roleId;
-        this.joinedAt = joinedAt;
-        this.buildingId = buildingId;
-        this.status = status;
-        this.mustChangePassword = mustChangePassword;
         this.assignedZoneId = assignedZoneId;
     }
 
@@ -45,24 +32,63 @@ public class UserDTO {
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
-    public String getPasswordHash() { return passwordHash; }
-    public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
-
     public int getRoleId() { return roleId; }
     public void setRoleId(int roleId) { this.roleId = roleId; }
 
-    public Timestamp getJoinedAt() { return joinedAt; }
-    public void setJoinedAt(Timestamp joinedAt) { this.joinedAt = joinedAt; }
-
-    public Integer getBuildingId() { return buildingId; }
-    public void setBuildingId(Integer buildingId) { this.buildingId = buildingId; }
-
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
-
-    public int getMustChangePassword() { return mustChangePassword; }
-    public void setMustChangePassword(int mustChangePassword) { this.mustChangePassword = mustChangePassword; }
-
     public Integer getAssignedZoneId() { return assignedZoneId; }
     public void setAssignedZoneId(Integer assignedZoneId) { this.assignedZoneId = assignedZoneId; }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
+
+    public String getRoleDisplay() {
+        switch (roleId) {
+            case 1: return "Resident";
+            case 2: return "Local Staff";
+            case 3: return "Supervisor";
+            case 4: return "City Manager";
+            default: return "Unknown";
+        }
+    }
+
+    public boolean isResident() {
+        return roleId == 1;
+    }
+
+    public boolean isStaff() {
+        return roleId != 1;
+    }
+
+    public boolean isCanAccessEnergy() {
+        return roleId >= 2;
+    }
+
+    public boolean getCanAccessEnergy() {
+        return roleId >= 2;
+    }
+
+    public boolean isCanAccessStreetLights() {
+        return roleId >= 2;
+    }
+
+    public boolean getCanAccessStreetLights() {
+        return roleId >= 2;
+    }
+
+    public boolean isCanAccessZoneCommand() {
+        return roleId >= 3;
+    }
+
+    public boolean getCanAccessZoneCommand() {
+        return roleId >= 3;
+    }
+
+    public boolean isCanAccessPolicy() {
+        return roleId == 4;
+    }
+
+    public boolean getCanAccessPolicy() {
+        return roleId == 4;
+    }
 }

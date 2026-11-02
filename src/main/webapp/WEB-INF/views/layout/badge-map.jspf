@@ -1,0 +1,33 @@
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%-- Feature map: plain-language name first, design pattern second --%>
+<div>
+    <h3 class="mb-3 text-center text-xs font-semibold uppercase tracking-wider text-slate-400">How SmartCity360 works</h3>
+    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
+
+        <div class="rounded-xl border border-slate-200 bg-white px-4 py-3" title="Complaints move from local staff to supervisors to city managers based on severity">
+            <div class="text-sm font-semibold text-slate-800">Complaint escalation</div>
+            <div class="mt-0.5 text-xs text-slate-500">Chain of Responsibility</div>
+        </div>
+
+        <div class="rounded-xl border border-slate-200 bg-white px-4 py-3" title="City, district, street and building zones that accept the same commands at any level">
+            <div class="text-sm font-semibold text-slate-800">Zone hierarchy</div>
+            <div class="mt-0.5 text-xs text-slate-500">Composite</div>
+        </div>
+
+        <div class="rounded-xl border border-slate-200 bg-white px-4 py-3" title="Energy meter streams wrapped with compression, encryption and authentication layers">
+            <div class="text-sm font-semibold text-slate-800">Energy data security</div>
+            <div class="mt-0.5 text-xs text-slate-500">Decorator</div>
+        </div>
+
+        <div class="rounded-xl border border-slate-200 bg-white px-4 py-3" title="Street lights of the same model share one configuration object to save memory">
+            <div class="text-sm font-semibold text-slate-800">Street light models</div>
+            <div class="mt-0.5 text-xs text-slate-500">Flyweight</div>
+        </div>
+
+        <div class="rounded-xl border border-slate-200 bg-white px-4 py-3" title="City rules such as noise limits and parking hours are written in a small language and evaluated at runtime">
+            <div class="text-sm font-semibold text-slate-800">City policy rules</div>
+            <div class="mt-0.5 text-xs text-slate-500">Interpreter</div>
+        </div>
+
+    </div>
+</div>

@@ -9,8 +9,22 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <non-jta-data-source>jdbc/SmartCity</non-jta-data-source>
 
+        <!-- All Entity Classes -->
         <class>lk.menara.smartcity360.entity.Role</class>
         <class>lk.menara.smartcity360.entity.AppUser</class>
+        <class>lk.menara.smartcity360.entity.Building</class>
+        <class>lk.menara.smartcity360.entity.ComplaintCategory</class>
+        <class>lk.menara.smartcity360.entity.ComplaintEntity</class>
+        <class>lk.menara.smartcity360.entity.ComplaintEventEntity</class>
+        <class>lk.menara.smartcity360.entity.EnergyMeter</class>
+        <class>lk.menara.smartcity360.entity.EnergyStreamLayerEntity</class>
+        <class>lk.menara.smartcity360.entity.EnergyStreamLogEntity</class>
+        <class>lk.menara.smartcity360.entity.MeterReadingEntity</class>
+        <class>lk.menara.smartcity360.entity.PolicyRuleEntity</class>
+        <class>lk.menara.smartcity360.entity.SecurityLayerEntity</class>
+        <class>lk.menara.smartcity360.entity.StreetLightEntity</class>
+        <class>lk.menara.smartcity360.entity.StreetLightTypeEntity</class>
+        <class>lk.menara.smartcity360.entity.Zone</class>
 
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="validate"/>

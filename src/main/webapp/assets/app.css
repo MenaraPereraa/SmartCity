@@ -1,14 +1,331 @@
-body { background: #f4f7f9; }
-.sc-navbar { background: linear-gradient(90deg, #0b3d5c, #136f63); }
-.sc-stat { border-left: 4px solid #0b3d5c; }
-.sc-stat.open { border-left-color: #0d6efd; }
-.sc-stat.escalated { border-left-color: #ffc107; }
-.sc-stat.resolved { border-left-color: #198754; }
-.sc-stat.unresolved { border-left-color: #dc3545; }
-.sc-stat-number { font-size: 2rem; font-weight: 700; line-height: 1.1; }
-.sc-timeline { list-style: none; margin: 0 0 0 .5rem; padding: 0; border-left: 2px solid #dee2e6; }
-.sc-timeline li { position: relative; padding: 0 0 1.25rem 1.5rem; }
-.sc-timeline li::before { content: ""; position: absolute; left: -7px; top: .4rem; width: 12px; height: 12px;
-    border-radius: 50%; background: #6c757d; }
-.sc-timeline li:last-child { padding-bottom: 0; }
-.sc-description { white-space: pre-wrap; }
+/* ─────────────────────────────────────────────
+   SmartCity360 – Modern Design System
+   Inspired by Global Trade Portal UI
+───────────────────────────────────────────── */
+
+:root {
+    --sc-primary: #4f46e5;
+    --sc-primary-hover: #4338ca;
+    --sc-sidebar-bg: #0f172a;
+    --sc-sidebar-width: 260px;
+    --sc-bg: #f8fafc;
+    --sc-card-bg: #ffffff;
+    --sc-border: #e2e8f0;
+    --sc-text: #0f172a;
+    --sc-muted: #64748b;
+    --sc-radius: 12px;
+    --sc-radius-sm: 8px;
+    --sc-shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+    --sc-shadow-md: 0 4px 12px rgba(0,0,0,.06);
+}
+
+/* Base */
+body {
+    background: var(--sc-bg);
+    color: var(--sc-text);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 0.9375rem;
+}
+
+/* ── Dark Sidebar (kept) ── */
+.sc-sidebar {
+    background: var(--sc-sidebar-bg) !important;
+    width: var(--sc-sidebar-width);
+}
+
+/* ── Auth pages ── */
+.sc-auth-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.sc-auth-wrapper {
+    width: 100%;
+    max-width: 420px;
+}
+
+.sc-auth-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,.08);
+    overflow: hidden;
+}
+
+.sc-auth-card-wide { max-width: 520px; margin: 0 auto; }
+
+.sc-auth-header {
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    color: #fff;
+    padding: 1.75rem 2rem 1.5rem;
+    text-align: center;
+}
+
+.sc-auth-logo {
+    font-size: 1.35rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.sc-auth-subtitle {
+    opacity: .85;
+    font-size: .875rem;
+    margin: .35rem 0 0;
+}
+
+.sc-auth-body { padding: 2rem; }
+
+.sc-auth-title {
+    font-size: 1.25rem;
+    font-weight: 650;
+    margin-bottom: .25rem;
+}
+
+.sc-auth-desc {
+    color: var(--sc-muted);
+    font-size: .9rem;
+    margin-bottom: 1.5rem;
+}
+
+.sc-input-group {
+    position: relative;
+}
+
+.sc-input-group > i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    pointer-events: none;
+}
+
+.sc-input-group .form-control {
+    padding-left: 2.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--sc-border);
+    height: 46px;
+}
+
+.sc-input-group .form-control:focus {
+    border-color: var(--sc-primary);
+    box-shadow: 0 0 0 3px rgba(79,70,229,.15);
+}
+
+.sc-pwd-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #94a3b8;
+    padding: 4px;
+}
+
+.sc-btn-auth {
+    width: 100%;
+    height: 46px;
+    border-radius: 10px;
+    font-weight: 600;
+    background: var(--sc-primary);
+    border-color: var(--sc-primary);
+}
+
+.sc-btn-auth:hover {
+    background: var(--sc-primary-hover);
+    border-color: var(--sc-primary-hover);
+}
+
+.sc-auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: .9rem;
+    color: var(--sc-muted);
+}
+
+.sc-auth-footer a {
+    font-weight: 600;
+    color: var(--sc-primary);
+    text-decoration: none;
+}
+
+.sc-auth-secure {
+    text-align: center;
+    margin-top: 1.25rem;
+    font-size: .75rem;
+    color: #94a3b8;
+}
+
+.sc-strength-bar {
+    height: 4px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+#strengthFill {
+    height: 100%;
+    width: 0;
+    border-radius: 4px;
+    transition: all .3s;
+}
+
+/* ── Page Header ── */
+.sc-page-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: .15rem;
+}
+.sc-page-subtitle {
+    color: var(--sc-muted);
+    font-size: .875rem;
+}
+
+/* ── Stat Cards ── */
+.sc-stat-card {
+    background: #fff;
+    border-radius: var(--sc-radius);
+    padding: 1.1rem 1.25rem;
+    box-shadow: var(--sc-shadow);
+    border-left: 4px solid transparent;
+    height: 100%;
+}
+.sc-stat-primary  { border-left-color: #3b82f6; }
+.sc-stat-warning  { border-left-color: #f59e0b; }
+.sc-stat-success  { border-left-color: #22c55e; }
+.sc-stat-danger   { border-left-color: #ef4444; }
+
+.sc-stat-label {
+    font-size: .7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--sc-muted);
+    margin-bottom: .25rem;
+}
+.sc-stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+/* ── Generic Card ── */
+.sc-card {
+    background: var(--sc-card-bg);
+    border-radius: var(--sc-radius);
+    box-shadow: var(--sc-shadow);
+    border: 1px solid var(--sc-border);
+    overflow: hidden;
+}
+.sc-card-header {
+    padding: 1.15rem 1.35rem 0;
+    background: transparent;
+    border: none;
+}
+.sc-card-title {
+    font-size: .95rem;
+    font-weight: 650;
+    margin-bottom: .1rem;
+}
+.sc-card-subtitle {
+    font-size: .8rem;
+    color: var(--sc-muted);
+    margin-bottom: 0;
+}
+.sc-card-body { padding: 1.25rem 1.35rem; }
+
+/* ── Quick Actions ── */
+.sc-quick-action {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #fff;
+    border-radius: var(--sc-radius);
+    padding: 1.1rem 1.25rem;
+    box-shadow: var(--sc-shadow);
+    border: 1px solid var(--sc-border);
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow .2s, transform .15s;
+    height: 100%;
+}
+.sc-quick-action:hover {
+    box-shadow: var(--sc-shadow-md);
+    transform: translateY(-2px);
+    color: inherit;
+}
+.sc-qa-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+.sc-qa-title { font-weight: 600; }
+.sc-qa-desc  { font-size: .8rem; color: var(--sc-muted); }
+
+/* Pattern pills */
+.sc-pattern-pill {
+    background: #fff;
+    border: 1px solid var(--sc-border);
+    color: var(--sc-muted);
+    font-size: .75rem;
+    font-weight: 500;
+    padding: .4rem 1rem;
+    border-radius: 999px;
+}
+
+/* Tables (complaint list etc.) */
+.table {
+    margin-bottom: 0;
+}
+.table thead th {
+    font-size: .75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    color: var(--sc-muted);
+    background: #f8fafc;
+    border-bottom: 1px solid var(--sc-border);
+    padding: .85rem 1rem;
+}
+.table tbody td {
+    padding: .9rem 1rem;
+    vertical-align: middle;
+    border-color: #f1f5f9;
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--sc-primary);
+    border-color: var(--sc-primary);
+}
+.btn-primary:hover {
+    background: var(--sc-primary-hover);
+    border-color: var(--sc-primary-hover);
+}
+
+/* Form controls globally */
+.form-control, .form-select {
+    border-radius: var(--sc-radius-sm);
+    border-color: var(--sc-border);
+}
+.form-control:focus, .form-select:focus {
+    border-color: var(--sc-primary);
+    box-shadow: 0 0 0 3px rgba(79,70,229,.12);
+}
+
+/* Badges */
+.badge {
+    font-weight: 500;
+    letter-spacing: .01em;
+}
